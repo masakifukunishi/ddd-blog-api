@@ -1,0 +1,26 @@
+{
+  "name": "inventory-management",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Inventory Management System with DDD",
+  "scripts": {
+    "start": "node dist/index.js",
+    "dev": "NODE_OPTIONS='--import=./register.js' nodemon src/index.ts",
+    "build": "tsc",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate-dev": "prisma migrate dev",
+    "prisma:migrate-deploy": "prisma migrate deploy"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.16.1",
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.14.9",
+    "nodemon": "^3.1.4",
+    "prisma": "^5.16.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.2"
+  }
+}
