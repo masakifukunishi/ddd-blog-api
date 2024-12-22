@@ -1,8 +1,8 @@
 {
-  "name": "inventory-management",
+  "name": "ddd-blog-ts",
   "type": "module",
   "version": "1.0.0",
-  "description": "Inventory Management System with DDD",
+  "description": "Blog API with DDD and TypeScript",
   "scripts": {
     "start": "node dist/index.js",
     "dev": "NODE_OPTIONS='--import=./register.js' nodemon src/index.ts",

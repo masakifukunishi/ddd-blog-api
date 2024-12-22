@@ -1,1 +1,1 @@
-# ddd-inventory-ts
+# ddd-blog-ts
