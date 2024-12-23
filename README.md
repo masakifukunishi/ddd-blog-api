@@ -10,7 +10,7 @@
 - application/: アプリケーション層
 
     - services/: ユースケースの実装
-    - errors/: アプリケーション固有のエラー定義
+    - commands/: コマンド
 
 
 - infrastructure/: インフラストラクチャ層
