@@ -1,24 +1,17 @@
 import { EmailAddress } from "./EmailAddress";
 
 export class User {
-  private readonly id: string;
-  private name: string;
-  private emailAddress: EmailAddress;
-
-  constructor(id: string, name: string, emailAddress: EmailAddress) {
+  constructor(private readonly id: number | null, private name: string, private email: EmailAddress) {
     this.validateName(name);
-    this.id = id;
-    this.name = name;
-    this.emailAddress = emailAddress;
   }
 
   private validateName(name: string): void {
-    if (name.length < 1 || name.length > 100) {
-      throw new Error("Name must be between 1 and 100 characters");
+    if (!name || name.trim().length === 0) {
+      throw new Error("Name cannot be empty");
     }
   }
 
-  getId(): string {
+  getId(): number | null {
     return this.id;
   }
 
@@ -26,12 +19,12 @@ export class User {
     return this.name;
   }
 
-  getEmailAddress(): EmailAddress {
-    return this.emailAddress;
+  getEmail(): EmailAddress {
+    return this.email;
   }
 
-  updateName(name: string): void {
-    this.validateName(name);
-    this.name = name;
+  changeName(newName: string): void {
+    this.validateName(newName);
+    this.name = newName;
   }
 }

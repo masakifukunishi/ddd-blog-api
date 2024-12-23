@@ -1,35 +1,31 @@
 export class Article {
-  private readonly id: string;
-  private title: string;
-  private content: string;
-  private readonly userId: string;
-  private readonly createdAt: Date;
-  private updatedAt: Date;
-
-  constructor(id: string, title: string, content: string, userId: string, createdAt: Date = new Date(), updatedAt: Date = new Date()) {
+  constructor(
+    private readonly id: number | null,
+    private title: string,
+    private content: string,
+    private readonly userId: number,
+    private readonly createdAt: Date = new Date()
+  ) {
     this.validateTitle(title);
     this.validateContent(content);
-    this.id = id;
-    this.title = title;
-    this.content = content;
-    this.userId = userId;
-    this.createdAt = createdAt;
-    this.updatedAt = updatedAt;
   }
 
   private validateTitle(title: string): void {
-    if (title.length < 1 || title.length > 200) {
-      throw new Error("Title must be between 1 and 200 characters");
+    if (!title || title.trim().length === 0) {
+      throw new Error("Title cannot be empty");
+    }
+    if (title.length > 100) {
+      throw new Error("Title cannot be longer than 100 characters");
     }
   }
 
   private validateContent(content: string): void {
-    if (content.length < 1 || content.length > 10000) {
-      throw new Error("Content must be between 1 and 10000 characters");
+    if (!content || content.trim().length === 0) {
+      throw new Error("Content cannot be empty");
     }
   }
 
-  getId(): string {
+  getId(): number | null {
     return this.id;
   }
 
@@ -41,7 +37,7 @@ export class Article {
     return this.content;
   }
 
-  getUserId(): string {
+  getUserId(): number {
     return this.userId;
   }
 
@@ -49,19 +45,13 @@ export class Article {
     return this.createdAt;
   }
 
-  getUpdatedAt(): Date {
-    return this.updatedAt;
+  updateTitle(newTitle: string): void {
+    this.validateTitle(newTitle);
+    this.title = newTitle;
   }
 
-  updateTitle(title: string): void {
-    this.validateTitle(title);
-    this.title = title;
-    this.updatedAt = new Date();
-  }
-
-  updateContent(content: string): void {
-    this.validateContent(content);
-    this.content = content;
-    this.updatedAt = new Date();
+  updateContent(newContent: string): void {
+    this.validateContent(newContent);
+    this.content = newContent;
   }
 }
