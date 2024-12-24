@@ -3,6 +3,8 @@ import { EmailAddress } from "../../domain/models/user/EmailAddress";
 import { UserRepository } from "../../domain/repositories/UserRepository";
 import { UserDomainService } from "../../domain/services/UserDomainService";
 import { CreateUserCommand } from "../commands/CreateUserCommand";
+import { NotFoundError } from "../../domain/errors/NotFoundError";
+import { DuplicateResourceError } from "../../domain/errors/DuplicateResourceError";
 
 export class UserApplicationService {
   constructor(private readonly userRepository: UserRepository, private readonly userDomainService: UserDomainService) {}
@@ -12,22 +14,25 @@ export class UserApplicationService {
 
     const isDuplicated = await this.userDomainService.isEmailDuplicated(emailAddress);
     if (isDuplicated) {
-      throw new Error("Email address is already in use");
+      throw new DuplicateResourceError("User", "email", command.email);
     }
 
     const user = new User(null, command.name, emailAddress);
-
     return await this.userRepository.save(user);
   }
 
-  async getUser(id: number): Promise<User | null> {
-    return await this.userRepository.findById(id);
+  async getUser(id: number): Promise<User> {
+    const user = await this.userRepository.findById(id);
+    if (!user) {
+      throw new NotFoundError("User", id);
+    }
+    return user;
   }
 
   async deleteUser(id: number): Promise<void> {
     const user = await this.userRepository.findById(id);
     if (!user) {
-      throw new Error("User not found");
+      throw new NotFoundError("User", id);
     }
     await this.userRepository.delete(id);
   }

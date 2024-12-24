@@ -4,6 +4,8 @@
 - interface/: Interface Layer
 
     - controllers/: HTTP Request Handling
+    - middlewares/: Middleware Functions
+    - routes/: Route Definitions
 
 - application/: Application Layer
 
@@ -15,6 +17,7 @@
     - models/: Entities and Value Objects
     - services/: Domain Services
     - repositories/: Repository Interface Definitions
+    - errors/: Domain Specific Errors
 
 
 - infrastructure/: Infrastructure Layer

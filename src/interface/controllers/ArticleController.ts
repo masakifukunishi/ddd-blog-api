@@ -2,6 +2,8 @@ import { Request, Response } from "express";
 import { body, validationResult } from "express-validator";
 import { ArticleApplicationService } from "../../application/services/ArticleApplicationService";
 import { CreateArticleCommand } from "../../application/commands/CreateArticleCommand";
+import { NotFoundError } from "../../domain/errors/NotFoundError";
+import { NotAuthorizedError } from "../../domain/errors/NotAuthorizedError";
 
 export class ArticleController {
   constructor(private readonly articleApplicationService: ArticleApplicationService) {}
@@ -31,7 +33,7 @@ export class ArticleController {
       const article = await this.articleApplicationService.createArticle(command);
       res.status(201).json(article);
     } catch (error) {
-      if (error instanceof Error && error.message === "User not found") {
+      if (error instanceof NotFoundError) {
         res.status(404).json({ message: error.message });
       } else {
         res.status(500).json({ message: "Internal server error" });
@@ -73,14 +75,12 @@ export class ArticleController {
       await this.articleApplicationService.deleteArticle(articleId, userId);
       res.status(204).send();
     } catch (error) {
-      if (error instanceof Error) {
-        if (error.message === "Article not found") {
-          res.status(404).json({ message: error.message });
-        } else if (error.message === "Not authorized to delete this article") {
-          res.status(403).json({ message: error.message });
-        } else {
-          res.status(500).json({ message: "Internal server error" });
-        }
+      if (error instanceof NotFoundError) {
+        res.status(404).json({ message: error.message });
+      } else if (error instanceof NotAuthorizedError) {
+        res.status(403).json({ message: error.message });
+      } else {
+        res.status(500).json({ message: "Internal server error" });
       }
     }
   }
