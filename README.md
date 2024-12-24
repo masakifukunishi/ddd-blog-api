@@ -117,8 +117,9 @@ Expected response (200 OK)
 curl -X GET http://localhost:3000/users/1/articles
 ```
 
+Expected response (200 OK)
+
 ```json
-Expected response (200 OK):
 [
   {
     "id": 1,
