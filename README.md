@@ -1,88 +1,43 @@
-# ddd-blog-ts
+# Blog service with DDD and Layered Architecture
+## Directory Structure
 
-- domain/: ドメイン層
+- interface/: Interface Layer
 
-    - models/: エンティティと値オブジェクト
-    - services/: ドメインサービス
-    - repositories/: リポジトリのインターフェース定義
+    - controllers/: HTTP Request Handling
 
+- application/: Application Layer
 
-- application/: アプリケーション層
+    - services/: Application Services
+    - commands/: Command Objects
+  
+- domain/: Domain Layer
 
-    - services/: ユースケースの実装
-    - commands/: コマンド
-
-
-- infrastructure/: インフラストラクチャ層
-
-    - prisma/: Prisma関連の設定
-    - repositories/: リポジトリの具体的な実装
+    - models/: Entities and Value Objects
+    - services/: Domain Services
+    - repositories/: Repository Interface Definitions
 
 
-- interface/: インターフェース層
+- infrastructure/: Infrastructure Layer
 
-    - controllers/: HTTPリクエストのハンドリング
-    - middlewares/: ミドルウェア
+    - prisma/: Prisma Related Configurations
+    - repositories/: Concrete Repository Implementations
 
-## 依存関係
+## Dependency Direction
 interface → application → domain ← infrastructure
 
+## Technical Stack
+- Node.js
+- Express
+- Prisma
+- TypeScript
+- Docker
+- Vitest
+- SQLite
 
-## 設計
-├── domain/
-│   ├── models/
-│   │   ├── user/
-│   │   │   ├── User.ts          # ユーザーエンティティ
-│   │   │   └── EmailAddress.ts  # メールアドレス値オブジェクト
-│   │   └── article/
-│   │       └── Article.ts       # 記事エンティティ
+## How to run
+1. docker compose up -d
+2. docker compose exec app npm run prisma:migrate-dev
 
-│   ├── services/
-│       ├── UserDomainService.ts
-
-│   └── repositories/
-
-│       ├── UserRepository.ts     # ユーザーリポジトリのインターフェース
-
-│       └── ArticleRepository.ts  # 記事リポジトリのインターフェース
-
-│
-
-├── application/
-
-│   ├── services/
-
-│   │   ├── UserApplicationService.ts  # ユーザー関連のユースケース
-
-│   │   └── ArticleApplicationService.ts # 記事関連のユースケース
-
-│
-
-├── infrastructure/
-
-│   ├── prisma/
-
-│   │   └── schema.prisma        # Prismaスキーマ
-
-│   └── repositories/
-
-│       ├── PrismaUserRepository.ts  # UserRepositoryの実装
-
-│       └── PrismaArticleRepository.ts # ArticleRepositoryの実装
-
-│
-
-├── interface/
-
-│   └── controllers/
-
-│       ├── UserController.ts     # ユーザー関連のエンドポイント
-
-│       └── ArticleController.ts  # 記事関連のエンドポイント
-
-│
-
-└── index.ts                      # アプリケーションのエントリーポイント
 
 ## Example API requests
 
