@@ -3,8 +3,8 @@ import { EmailAddress } from "../../domain/models/user/EmailAddress";
 import { UserRepository } from "../../domain/repositories/UserRepository";
 import { UserDomainService } from "../../domain/services/UserDomainService";
 import { CreateUserCommand } from "../commands/CreateUserCommand";
-import { NotFoundError } from "../../domain/errors/NotFoundError";
-import { DuplicateResourceError } from "../../domain/errors/DuplicateResourceError";
+import { NotFoundError } from "../errors/NotFoundError";
+import { DuplicateResourceError } from "../errors/DuplicateResourceError";
 
 export class UserApplicationService {
   constructor(private readonly userRepository: UserRepository, private readonly userDomainService: UserDomainService) {}

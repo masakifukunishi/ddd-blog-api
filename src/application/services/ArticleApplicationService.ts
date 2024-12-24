@@ -2,8 +2,8 @@ import { Article } from "../../domain/models/article/Article";
 import { ArticleRepository } from "../../domain/repositories/ArticleRepository";
 import { UserRepository } from "../../domain/repositories/UserRepository";
 import { CreateArticleCommand } from "../commands/CreateArticleCommand";
-import { NotFoundError } from "../../domain/errors/NotFoundError";
-import { NotAuthorizedError } from "../../domain/errors/NotAuthorizedError";
+import { NotFoundError } from "../errors/NotFoundError";
+import { NotAuthorizedError } from "../errors/NotAuthorizedError";
 
 export class ArticleApplicationService {
   constructor(private readonly articleRepository: ArticleRepository, private readonly userRepository: UserRepository) {}

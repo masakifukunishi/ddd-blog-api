@@ -2,8 +2,8 @@ import { Request, Response } from "express";
 import { body, validationResult } from "express-validator";
 import { ArticleApplicationService } from "../../application/services/ArticleApplicationService";
 import { CreateArticleCommand } from "../../application/commands/CreateArticleCommand";
-import { NotFoundError } from "../../domain/errors/NotFoundError";
-import { NotAuthorizedError } from "../../domain/errors/NotAuthorizedError";
+import { NotFoundError } from "../../application/errors/NotFoundError";
+import { NotAuthorizedError } from "../../application/errors/NotAuthorizedError";
 
 export class ArticleController {
   constructor(private readonly articleApplicationService: ArticleApplicationService) {}

@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction } from "express";
-import { NotFoundError } from "../../domain/errors/NotFoundError";
-import { NotAuthorizedError } from "../../domain/errors/NotAuthorizedError";
-import { ValidationError } from "../../domain/errors/ValidationError";
-import { DuplicateResourceError } from "../../domain/errors/DuplicateResourceError";
-import { DomainError } from "../../domain/errors/DomainError";
+import { NotFoundError } from "../../application/errors/NotFoundError";
+import { NotAuthorizedError } from "../../application/errors/NotAuthorizedError";
+import { ValidationError } from "../../application/errors/ValidationError";
+import { DuplicateResourceError } from "../../application/errors/DuplicateResourceError";
+import { DomainError } from "../../application/errors/DomainError";
 
 export function errorHandler(error: Error, req: Request, res: Response, next: NextFunction): void {
   if (error instanceof ValidationError) {

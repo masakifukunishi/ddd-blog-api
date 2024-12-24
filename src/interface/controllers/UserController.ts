@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { body, validationResult } from "express-validator";
 import { UserApplicationService } from "../../application/services/UserApplicationService";
 import { CreateUserCommand } from "../../application/commands/CreateUserCommand";
-import { ValidationError } from "../../domain/errors/ValidationError";
+import { ValidationError } from "../../application/errors/ValidationError";
 
 export class UserController {
   constructor(private readonly userApplicationService: UserApplicationService) {}

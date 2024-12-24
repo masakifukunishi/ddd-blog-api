@@ -46,7 +46,7 @@ interface → application → domain ← infrastructure
 
 ### 1. Create a new user
 ```bash
-curl -X POST http://localhost:3000/users \
+curl -X POST http://localhost:3000/api/users \
   -H "Content-Type: application/json" \
   -d '{
     "name": "John Doe",
@@ -65,7 +65,7 @@ Expected response (201 Created)
 
 ### 2. Get user by ID
 ```bash
-curl -X GET http://localhost:3000/users/1
+curl -X GET http://localhost:3000/api/users/1
 ```
 
 Expected response (200 OK)
@@ -79,7 +79,7 @@ Expected response (200 OK)
 
 ###  3. Create a new article
 ```bash
-curl -X POST http://localhost:3000/articles \
+curl -X POST http://localhost:3000/api/articles \
   -H "Content-Type: application/json" \
   -d '{
     "title": "My First Article",
@@ -101,7 +101,7 @@ Expected response (201 Created)
 
 ### 4. Get article by ID
 ```bash
-curl -X GET http://localhost:3000/articles/1
+curl -X GET http://localhost:3000/api/articles/1
 ```
 
 Expected response (200 OK)
@@ -117,7 +117,7 @@ Expected response (200 OK)
 
 ### 5. Get user's articles
 ```bash
-curl -X GET http://localhost:3000/users/1/articles
+curl -X GET http://localhost:3000/api/users/1/articles
 ```
 
 Expected response (200 OK)
@@ -136,13 +136,13 @@ Expected response (200 OK)
 
 ### 6. Delete article (by owner)
 ```bash
-curl -X DELETE http://localhost:3000/articles/1/users/1
+curl -X DELETE http://localhost:3000/api/articles/1/users/1
 ```
 Expected response (204 No Content)
 
 ### 7. Delete user
 ```bash
-curl -X DELETE http://localhost:3000/users/1
+curl -X DELETE http://localhost:3000/api/users/1
 ```
 
 Expected response (204 No Content)
@@ -151,7 +151,7 @@ Expected response (204 No Content)
 
 ### 8. Create user with duplicate email
 ```bash
-curl -X POST http://localhost:3000/users \
+curl -X POST http://localhost:3000/api/users \
   -H "Content-Type: application/json" \
   -d '{
     "name": "Jane Doe",
@@ -168,7 +168,7 @@ Expected response (409 Conflict)
 
 ### 9. Create article with invalid user
 ```bash
-curl -X POST http://localhost:3000/articles \
+curl -X POST http://localhost:3000/api/articles \
   -H "Content-Type: application/json" \
   -d '{
     "title": "Invalid Article",
@@ -186,7 +186,7 @@ Expected response (404 Not Found)
 
 ### 10. Delete article by non-owner
 ```bash
-curl -X DELETE http://localhost:3000/articles/1/users/2
+curl -X DELETE http://localhost:3000/api/articles/1/users/2
 ```
 
 Expected response (403 Forbidden)
