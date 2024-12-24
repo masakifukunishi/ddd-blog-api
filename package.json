@@ -3,6 +3,9 @@
   "type": "module",
   "version": "1.0.0",
   "description": "Blog API with DDD and TypeScript",
+  "prisma": {
+    "schema": "src/infrastructure/prisma/schema.prisma"
+  },
   "scripts": {
     "start": "node dist/index.js",
     "dev": "NODE_OPTIONS='--import=./register.js' nodemon src/index.ts",
