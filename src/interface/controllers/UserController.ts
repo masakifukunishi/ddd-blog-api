@@ -22,7 +22,7 @@ export class UserController {
   async create(req: Request, res: Response): Promise<void> {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      throw new ValidationError(errors.array());
+      throw ValidationError.fromExpressValidationErrors(errors.array());
     }
 
     const command = new CreateUserCommand(req.body.name.trim(), req.body.email.toLowerCase());
