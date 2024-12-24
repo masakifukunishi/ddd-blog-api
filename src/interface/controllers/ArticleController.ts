@@ -68,7 +68,7 @@ export class ArticleController {
   async delete(req: Request, res: Response): Promise<void> {
     try {
       const articleId = parseInt(req.params.id);
-      const userId = parseInt(req.params.userId); // 記事を削除するユーザーのID
+      const userId = parseInt(req.params.userId);
 
       await this.articleApplicationService.deleteArticle(articleId, userId);
       res.status(204).send();
