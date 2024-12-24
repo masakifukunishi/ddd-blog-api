@@ -13,7 +13,6 @@ RUN npm install
 
 COPY tsconfig.json package*.json register.js ./
 COPY src ./src
-COPY prisma ./prisma
 
 RUN npm run prisma:generate
 
