@@ -1,7 +1,10 @@
 import express from "express";
 import { json } from "express";
+import { errorHandler } from "./interface/middlewares/errorHandler";
 import { UserController } from "./interface/controllers/UserController";
 import { ArticleController } from "./interface/controllers/ArticleController";
+import { userRouter } from "./interface/routes/userRoutes";
+import { articleRouter } from "./interface/routes/articleRoutes";
 import { UserApplicationService } from "./application/services/UserApplicationService";
 import { ArticleApplicationService } from "./application/services/ArticleApplicationService";
 import { PrismaUserRepository } from "./infrastructure/repositories/PrismaUserRepository";
@@ -27,16 +30,10 @@ async function bootstrap() {
   const userController = new UserController(userApplicationService);
   const articleController = new ArticleController(articleApplicationService);
 
-  // User-related routes
-  app.post("/users", UserController.validations.createUser, userController.create.bind(userController));
-  app.get("/users/:id", userController.get.bind(userController));
-  app.delete("/users/:id", userController.delete.bind(userController));
+  app.use("/api/users", userRouter(userController));
+  app.use("/api/articles", articleRouter(articleController));
 
-  // Article-related routes
-  app.post("/articles", ArticleController.validations.createArticle, articleController.create.bind(articleController));
-  app.get("/articles/:id", articleController.get.bind(articleController));
-  app.get("/users/:userId/articles", articleController.getUserArticles.bind(articleController));
-  app.delete("/articles/:id/users/:userId", articleController.delete.bind(articleController));
+  app.use(errorHandler);
 
   const port = process.env.PORT || 3000;
   app.listen(port, () => {

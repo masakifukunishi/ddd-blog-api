@@ -1,9 +1,9 @@
 import { User } from "../../domain/models/user/User";
 import { EmailAddress } from "../../domain/models/user/EmailAddress";
-import { UserRepository } from "../../domain/repositories/UserRepository";
+import { IUserRepository } from "../../domain/repositories/IUserRepository";
 import { prisma } from "../prisma/client";
 
-export class PrismaUserRepository implements UserRepository {
+export class PrismaUserRepository implements IUserRepository {
   async save(user: User): Promise<User> {
     const data = {
       name: user.getName(),

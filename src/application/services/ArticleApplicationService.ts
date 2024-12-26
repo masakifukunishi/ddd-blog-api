@@ -1,19 +1,20 @@
 import { Article } from "../../domain/models/article/Article";
-import { ArticleRepository } from "../../domain/repositories/ArticleRepository";
-import { UserRepository } from "../../domain/repositories/UserRepository";
+import { IArticleRepository } from "../../domain/repositories/IArticleRepository";
+import { IUserRepository } from "../../domain/repositories/IUserRepository";
 import { CreateArticleCommand } from "../commands/CreateArticleCommand";
+import { NotFoundError } from "../errors/NotFoundError";
+import { NotAuthorizedError } from "../errors/NotAuthorizedError";
 
 export class ArticleApplicationService {
-  constructor(private readonly articleRepository: ArticleRepository, private readonly userRepository: UserRepository) {}
+  constructor(private readonly articleRepository: IArticleRepository, private readonly userRepository: IUserRepository) {}
 
   async createArticle(command: CreateArticleCommand): Promise<Article> {
     const user = await this.userRepository.findById(command.userId);
     if (!user) {
-      throw new Error("User not found");
+      throw new NotFoundError("User", command.userId);
     }
 
     const article = new Article(null, command.title, command.content, command.userId);
-
     return await this.articleRepository.save(article);
   }
 
@@ -28,11 +29,11 @@ export class ArticleApplicationService {
   async deleteArticle(id: number, userId: number): Promise<void> {
     const article = await this.articleRepository.findById(id);
     if (!article) {
-      throw new Error("Article not found");
+      throw new NotFoundError("Article", id);
     }
 
     if (article.getUserId() !== userId) {
-      throw new Error("Not authorized to delete this article");
+      throw new NotAuthorizedError("User is not authorized to delete this article");
     }
 
     await this.articleRepository.delete(id);
