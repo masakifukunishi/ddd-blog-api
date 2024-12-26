@@ -1,6 +1,6 @@
 import { User } from "../../domain/models/user/User";
 import { EmailAddress } from "../../domain/models/user/EmailAddress";
-import { UserRepository } from "../../domain/repositories/UserRepository";
+import { UserRepository } from "../../domain/repositories/IUserRepository";
 import { UserDomainService } from "../../domain/services/UserDomainService";
 import { CreateUserCommand } from "../commands/CreateUserCommand";
 import { NotFoundError } from "../errors/NotFoundError";

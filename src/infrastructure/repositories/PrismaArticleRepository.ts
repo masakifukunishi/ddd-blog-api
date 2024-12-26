@@ -1,8 +1,8 @@
 import { Article } from "../../domain/models/article/Article";
-import { ArticleRepository } from "../../domain/repositories/ArticleRepository";
+import { IArticleRepository } from "../../domain/repositories/IArticleRepository";
 import { prisma } from "../prisma/client";
 
-export class PrismaArticleRepository implements ArticleRepository {
+export class PrismaArticleRepository implements IArticleRepository {
   async save(article: Article): Promise<Article> {
     const data = {
       title: article.getTitle(),

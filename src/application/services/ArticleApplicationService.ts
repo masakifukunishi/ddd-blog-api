@@ -1,12 +1,12 @@
 import { Article } from "../../domain/models/article/Article";
-import { ArticleRepository } from "../../domain/repositories/ArticleRepository";
-import { UserRepository } from "../../domain/repositories/UserRepository";
+import { IArticleRepository } from "../../domain/repositories/IArticleRepository";
+import { IUserRepository } from "../../domain/repositories/IUserRepository";
 import { CreateArticleCommand } from "../commands/CreateArticleCommand";
 import { NotFoundError } from "../errors/NotFoundError";
 import { NotAuthorizedError } from "../errors/NotAuthorizedError";
 
 export class ArticleApplicationService {
-  constructor(private readonly articleRepository: ArticleRepository, private readonly userRepository: UserRepository) {}
+  constructor(private readonly articleRepository: IArticleRepository, private readonly userRepository: IUserRepository) {}
 
   async createArticle(command: CreateArticleCommand): Promise<Article> {
     const user = await this.userRepository.findById(command.userId);
