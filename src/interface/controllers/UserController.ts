@@ -1,32 +1,12 @@
 import { Request, Response } from "express";
-import { body, validationResult } from "express-validator";
 import { UserApplicationService } from "../../application/services/UserApplicationService";
 import { CreateUserCommand } from "../../application/commands/CreateUserCommand";
-import { ValidationError } from "../../application/errors/ValidationError";
 
 export class UserController {
   constructor(private readonly userApplicationService: UserApplicationService) {}
 
-  static validations = {
-    createUser: [
-      body("name")
-        .notEmpty()
-        .withMessage("Name is required")
-        .trim()
-        .isLength({ min: 1, max: 100 })
-        .withMessage("Name must be between 1 and 100 characters"),
-      body("email").isEmail().withMessage("Valid email is required").normalizeEmail(),
-    ],
-  };
-
   async create(req: Request, res: Response): Promise<void> {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      throw ValidationError.fromExpressValidationErrors(errors.array());
-    }
-
     const command = new CreateUserCommand(req.body.name.trim(), req.body.email.toLowerCase());
-
     const user = await this.userApplicationService.createUser(command);
     res.status(201).json(user);
   }

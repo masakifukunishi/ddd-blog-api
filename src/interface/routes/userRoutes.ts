@@ -1,10 +1,12 @@
 import { Router, Request, Response, NextFunction } from "express";
-import { UserController } from "../controllers/UserController";
+import type { UserController } from "../controllers/UserController";
+import { userValidation } from "../middlewares/userValidation";
+import { validateRequest } from "../middlewares/validateRequest";
 
 export const userRouter = (userController: UserController): Router => {
   const router = Router();
 
-  router.post("/", UserController.validations.createUser, (req: Request, res: Response, next: NextFunction) =>
+  router.post("/", userValidation.createUser, validateRequest, (req: Request, res: Response, next: NextFunction) =>
     userController.create(req, res).catch(next)
   );
   router.get("/:id", (req: Request, res: Response, next: NextFunction) => userController.get(req, res).catch(next));
