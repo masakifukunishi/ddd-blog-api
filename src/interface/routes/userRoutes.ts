@@ -1,6 +1,6 @@
 import { Router, Request, Response, NextFunction } from "express";
 import type { UserController } from "../controllers/UserController";
-import { userValidation } from "../middlewares/userValidation";
+import { userValidation } from "../middlewares/validations/userValidation";
 import { validateRequest } from "../middlewares/validateRequest";
 
 export const userRouter = (userController: UserController): Router => {

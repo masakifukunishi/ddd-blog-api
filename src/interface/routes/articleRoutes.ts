@@ -1,6 +1,6 @@
 import { Router, Request, Response, NextFunction } from "express";
 import { ArticleController } from "../controllers/ArticleController";
-import { articleValidation } from "../middlewares/articleValidation";
+import { articleValidation } from "../middlewares/validations/articleValidation";
 import { validateRequest } from "../middlewares/validateRequest";
 
 export const articleRouter = (articleController: ArticleController): Router => {
