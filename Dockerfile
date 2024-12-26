@@ -7,7 +7,6 @@ RUN apt-get update && \
 
 WORKDIR /workdir
 
-# Install dependencies
 COPY package*.json ./
 RUN npm install
 
