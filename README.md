@@ -1,4 +1,6 @@
 # Blog service with DDD and Layered Architecture
+
+This is a sample project demonstrating the implementation of a blog service using Domain-Driven Design (DDD) and Layered Architecture principles.
 ## Directory Structure
 
 ### src/
@@ -34,13 +36,16 @@
 interface → application → domain ← infrastructure
 
 ## Technical Stack
+- Docker
+- TypeScript
 - Node.js
 - Express
 - Prisma
-- TypeScript
-- Docker
-- Vitest
 - SQLite
+- Vitest
+- ESLint
+- Prettier
+- GitHub Actions (CI)
 
 ## How to run
 1. docker compose up app-dev -d
