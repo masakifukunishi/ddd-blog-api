@@ -1,6 +1,7 @@
 # Blog service with DDD and Layered Architecture
 ## Directory Structure
 
+### src/
 - interface/: Interface Layer
 
     - controllers/: HTTP Request Handling
@@ -25,6 +26,11 @@
     - prisma/: Prisma Related Configurations
     - repositories/: Concrete Repository Implementations
 
+### tests/
+ - unit/: Unit Tests
+ - integration/: Integration Tests
+ - helpers/: Test Helper Functions
+
 ## Dependency Direction
 interface → application → domain ← infrastructure
 
@@ -41,6 +47,9 @@ interface → application → domain ← infrastructure
 1. docker compose up -d
 2. docker compose exec app npm run prisma:migrate-dev
 
+## How to test
+1. docker compose exec app npm run test
+2. docker compose exec app npm run test:coverage
 
 ## Example API requests
 
