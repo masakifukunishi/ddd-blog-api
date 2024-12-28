@@ -1,7 +1,11 @@
 import { EmailAddress } from "./EmailAddress.js";
 
 export class User {
-  constructor(private readonly id: number | null, private name: string, private email: EmailAddress) {
+  constructor(
+    private readonly id: number | null,
+    private name: string,
+    private email: EmailAddress,
+  ) {
     this.validateName(name);
   }
 
