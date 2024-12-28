@@ -1,4 +1,4 @@
-import { DomainError } from "./DomainError";
+import { DomainError } from "./DomainError.js";
 import { ValidationError as ExpressValidationError } from "express-validator";
 
 interface ValidationErrorDetail {

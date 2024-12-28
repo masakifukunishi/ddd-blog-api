@@ -1,5 +1,5 @@
-import { Article } from "../../domain/models/article/Article";
-import { IArticleRepository } from "../../domain/repositories/IArticleRepository";
+import { Article } from "../../domain/models/article/Article.js";
+import { IArticleRepository } from "../../domain/repositories/IArticleRepository.js";
 import { PrismaClient } from "@prisma/client";
 
 export class PrismaArticleRepository implements IArticleRepository {

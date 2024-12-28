@@ -1,11 +1,25 @@
 version: "3.8"
 services:
-  app:
-    build: .
+  app-dev:
+    build:
+      context: .
+      target: development
     ports:
       - "3000:3000"
     volumes:
       - ./src:/workdir/src
       - ./tests:/workdir/tests
+      - ./prisma:/workdir/prisma
     environment:
-      - DATABASE_URL=file:/workdir/src/infrastructure/prisma/dev.db
+      - DATABASE_URL=file:/workdir/prisma/dev.db
+
+  app-prd:
+    build:
+      context: .
+      target: production
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./prisma:/workdir/prisma
+    environment:
+      - DATABASE_URL=file:/workdir/prisma/prod.db

@@ -1,10 +1,10 @@
-import { User } from "../../domain/models/user/User";
-import { EmailAddress } from "../../domain/models/user/EmailAddress";
-import { IUserRepository } from "../../domain/repositories/IUserRepository";
-import { UserDomainService } from "../../domain/services/UserDomainService";
-import { CreateUserCommand } from "../commands/CreateUserCommand";
-import { NotFoundError } from "../errors/NotFoundError";
-import { DuplicateResourceError } from "../errors/DuplicateResourceError";
+import { User } from "../../domain/models/user/User.js";
+import { EmailAddress } from "../../domain/models/user/EmailAddress.js";
+import { IUserRepository } from "../../domain/repositories/IUserRepository.js";
+import { UserDomainService } from "../../domain/services/UserDomainService.js";
+import { CreateUserCommand } from "../commands/CreateUserCommand.js";
+import { NotFoundError } from "../errors/NotFoundError.js";
+import { DuplicateResourceError } from "../errors/DuplicateResourceError.js";
 
 export class UserApplicationService {
   constructor(private readonly userRepository: IUserRepository, private readonly userDomainService: UserDomainService) {}

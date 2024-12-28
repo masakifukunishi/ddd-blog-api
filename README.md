@@ -43,12 +43,12 @@ interface → application → domain ← infrastructure
 - SQLite
 
 ## How to run
-1. docker compose up -d
-2. docker compose exec app npm run prisma:migrate-dev
+1. docker compose up app-dev -d
+2. docker compose exec app-dev npm run prisma:migrate-dev
 
 ## How to test
-1. docker compose exec app npm run test
-2. docker compose exec app npm run test:coverage
+1. docker compose exec app-dev npm run test
+2. docker compose exec app-dev npm run test:coverage
 
 ## Example API requests
 
