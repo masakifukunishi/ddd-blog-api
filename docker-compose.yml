@@ -6,5 +6,6 @@ services:
       - "3000:3000"
     volumes:
       - ./src:/workdir/src
+      - ./tests:/workdir/tests
     environment:
       - DATABASE_URL=file:/workdir/src/infrastructure/prisma/dev.db

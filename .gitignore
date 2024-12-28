@@ -31,3 +31,7 @@ lerna-debug.log*
 
 # tmp
 tmp/
+
+# database
+*.db
+*.db-journal

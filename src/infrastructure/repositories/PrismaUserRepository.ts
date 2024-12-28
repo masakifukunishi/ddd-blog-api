@@ -1,9 +1,11 @@
 import { User } from "../../domain/models/user/User";
 import { EmailAddress } from "../../domain/models/user/EmailAddress";
 import { IUserRepository } from "../../domain/repositories/IUserRepository";
-import { prisma } from "../prisma/client";
+import { PrismaClient } from "@prisma/client";
 
 export class PrismaUserRepository implements IUserRepository {
+  constructor(private readonly prisma: PrismaClient) {}
+
   async save(user: User): Promise<User> {
     const data = {
       name: user.getName(),
@@ -11,14 +13,14 @@ export class PrismaUserRepository implements IUserRepository {
     };
 
     if (user.getId() === null) {
-      const created = await prisma.user.create({
+      const created = await this.prisma.user.create({
         data,
       });
 
       return new User(created.id, created.name, new EmailAddress(created.email));
     } else {
-      const updated = await prisma.user.update({
-        where: { id: user.getId() },
+      const updated = await this.prisma.user.update({
+        where: { id: user.getId() ?? undefined }, // nullの場合はundefinedに変換
         data,
       });
 
@@ -27,7 +29,7 @@ export class PrismaUserRepository implements IUserRepository {
   }
 
   async findById(id: number): Promise<User | null> {
-    const user = await prisma.user.findUnique({
+    const user = await this.prisma.user.findUnique({
       where: { id },
     });
 
@@ -37,7 +39,7 @@ export class PrismaUserRepository implements IUserRepository {
   }
 
   async findByEmail(email: EmailAddress): Promise<User | null> {
-    const user = await prisma.user.findUnique({
+    const user = await this.prisma.user.findUnique({
       where: { email: email.getValue() },
     });
 
@@ -47,7 +49,7 @@ export class PrismaUserRepository implements IUserRepository {
   }
 
   async delete(id: number): Promise<void> {
-    await prisma.user.delete({
+    await this.prisma.user.delete({
       where: { id },
     });
   }

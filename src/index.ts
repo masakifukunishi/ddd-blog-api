@@ -10,14 +10,15 @@ import { ArticleApplicationService } from "./application/services/ArticleApplica
 import { PrismaUserRepository } from "./infrastructure/repositories/PrismaUserRepository";
 import { PrismaArticleRepository } from "./infrastructure/repositories/PrismaArticleRepository";
 import { UserDomainService } from "./domain/services/UserDomainService";
+import { prisma } from "./infrastructure/prisma/client";
 
 async function bootstrap() {
   const app = express();
   app.use(json());
 
   // Initialize repositories
-  const userRepository = new PrismaUserRepository();
-  const articleRepository = new PrismaArticleRepository();
+  const userRepository = new PrismaUserRepository(prisma);
+  const articleRepository = new PrismaArticleRepository(prisma);
 
   // Initialize domain services
   const userDomainService = new UserDomainService(userRepository);

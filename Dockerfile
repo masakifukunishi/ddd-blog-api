@@ -10,8 +10,9 @@ WORKDIR /workdir
 COPY package*.json ./
 RUN npm install
 
-COPY tsconfig.json package*.json register.js ./
+COPY tsconfig.json package*.json register.js vite.config.ts ./
 COPY src ./src
+COPY tests ./tests
 
 RUN npm run prisma:generate
 

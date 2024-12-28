@@ -1,8 +1,10 @@
 import { Article } from "../../domain/models/article/Article";
 import { IArticleRepository } from "../../domain/repositories/IArticleRepository";
-import { prisma } from "../prisma/client";
+import { PrismaClient } from "@prisma/client";
 
 export class PrismaArticleRepository implements IArticleRepository {
+  constructor(private readonly prisma: PrismaClient) {}
+
   async save(article: Article): Promise<Article> {
     const data = {
       title: article.getTitle(),
@@ -10,24 +12,23 @@ export class PrismaArticleRepository implements IArticleRepository {
       userId: article.getUserId(),
     };
 
-    if (article.getId() === null) {
-      const created = await prisma.article.create({
+    const id = article.getId();
+    if (id === null) {
+      const created = await this.prisma.article.create({
         data,
       });
-
       return new Article(created.id, created.title, created.content, created.userId, created.createdAt);
     } else {
-      const updated = await prisma.article.update({
-        where: { id: article.getId() },
+      const updated = await this.prisma.article.update({
+        where: { id },
         data,
       });
-
       return new Article(updated.id, updated.title, updated.content, updated.userId, updated.createdAt);
     }
   }
 
   async findById(id: number): Promise<Article | null> {
-    const article = await prisma.article.findUnique({
+    const article = await this.prisma.article.findUnique({
       where: { id },
     });
 
@@ -37,7 +38,7 @@ export class PrismaArticleRepository implements IArticleRepository {
   }
 
   async findByUserId(userId: number): Promise<Article[]> {
-    const articles = await prisma.article.findMany({
+    const articles = await this.prisma.article.findMany({
       where: { userId },
     });
 
@@ -48,7 +49,7 @@ export class PrismaArticleRepository implements IArticleRepository {
   }
 
   async delete(id: number): Promise<void> {
-    await prisma.article.delete({
+    await this.prisma.article.delete({
       where: { id },
     });
   }
