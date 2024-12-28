@@ -2,11 +2,10 @@ import { PrismaClient } from "@prisma/client";
 import { execSync } from "child_process";
 
 export async function setupTestDatabase() {
-  process.env.DATABASE_URL = "file:./test.db";
-  execSync("npx prisma migrate deploy", {
+  execSync("npm run prisma:migrate-dev", {
     env: {
       ...process.env,
-      DATABASE_URL: process.env.DATABASE_URL,
+      DATABASE_URL: process.env.TEST_DATABASE_URL,
     },
   });
 

@@ -9,3 +9,4 @@ services:
       - ./tests:/workdir/tests
     environment:
       - DATABASE_URL=file:/workdir/src/infrastructure/prisma/dev.db
+      - TEST_DATABASE_URL=file:/workdir/src/infrastructure/prisma/test.db
