@@ -7,7 +7,10 @@ import { NotFoundError } from "../errors/NotFoundError.js";
 import { DuplicateResourceError } from "../errors/DuplicateResourceError.js";
 
 export class UserApplicationService {
-  constructor(private readonly userRepository: IUserRepository, private readonly userDomainService: UserDomainService) {}
+  constructor(
+    private readonly userRepository: IUserRepository,
+    private readonly userDomainService: UserDomainService,
+  ) {}
 
   async createUser(command: CreateUserCommand): Promise<User> {
     const emailAddress = new EmailAddress(command.email);

@@ -6,7 +6,10 @@ import { NotFoundError } from "../errors/NotFoundError.js";
 import { NotAuthorizedError } from "../errors/NotAuthorizedError.js";
 
 export class ArticleApplicationService {
-  constructor(private readonly articleRepository: IArticleRepository, private readonly userRepository: IUserRepository) {}
+  constructor(
+    private readonly articleRepository: IArticleRepository,
+    private readonly userRepository: IUserRepository,
+  ) {}
 
   async createArticle(command: CreateArticleCommand): Promise<Article> {
     const user = await this.userRepository.findById(command.userId);

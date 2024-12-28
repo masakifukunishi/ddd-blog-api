@@ -44,7 +44,7 @@ export class PrismaArticleRepository implements IArticleRepository {
 
     return articles.map(
       (article: { id: number; title: string; content: string; userId: number; createdAt: Date }) =>
-        new Article(article.id, article.title, article.content, article.userId, article.createdAt)
+        new Article(article.id, article.title, article.content, article.userId, article.createdAt),
     );
   }
 
