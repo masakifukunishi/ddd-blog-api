@@ -34,3 +34,4 @@ tmp/
 
 # database
 *.db
+*.db-journal
