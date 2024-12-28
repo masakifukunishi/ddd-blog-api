@@ -1,5 +1,5 @@
-import { User } from "../models/user/User";
-import { EmailAddress } from "../models/user/EmailAddress";
+import { User } from "../models/user/User.js";
+import { EmailAddress } from "../models/user/EmailAddress.js";
 
 export interface IUserRepository {
   save(user: User): Promise<User>;

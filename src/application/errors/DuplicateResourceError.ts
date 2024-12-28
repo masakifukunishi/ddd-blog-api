@@ -1,4 +1,4 @@
-import { DomainError } from "./DomainError";
+import { DomainError } from "./DomainError.js";
 
 export class DuplicateResourceError extends DomainError {
   constructor(public readonly resourceType: string, public readonly field: string, public readonly value: string) {

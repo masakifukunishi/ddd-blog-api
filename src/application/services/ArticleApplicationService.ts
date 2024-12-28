@@ -1,9 +1,9 @@
-import { Article } from "../../domain/models/article/Article";
-import { IArticleRepository } from "../../domain/repositories/IArticleRepository";
-import { IUserRepository } from "../../domain/repositories/IUserRepository";
-import { CreateArticleCommand } from "../commands/CreateArticleCommand";
-import { NotFoundError } from "../errors/NotFoundError";
-import { NotAuthorizedError } from "../errors/NotAuthorizedError";
+import { Article } from "../../domain/models/article/Article.js";
+import { IArticleRepository } from "../../domain/repositories/IArticleRepository.js";
+import { IUserRepository } from "../../domain/repositories/IUserRepository.js";
+import { CreateArticleCommand } from "../commands/CreateArticleCommand.js";
+import { NotFoundError } from "../errors/NotFoundError.js";
+import { NotAuthorizedError } from "../errors/NotAuthorizedError.js";
 
 export class ArticleApplicationService {
   constructor(private readonly articleRepository: IArticleRepository, private readonly userRepository: IUserRepository) {}

@@ -1,4 +1,4 @@
-import { Article } from "../models/article/Article";
+import { Article } from "../models/article/Article.js";
 
 export interface IArticleRepository {
   save(article: Article): Promise<Article>;

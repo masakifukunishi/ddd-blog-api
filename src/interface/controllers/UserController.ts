@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { UserApplicationService } from "../../application/services/UserApplicationService";
-import { CreateUserCommand } from "../../application/commands/CreateUserCommand";
+import { UserApplicationService } from "../../application/services/UserApplicationService.js";
+import { CreateUserCommand } from "../../application/commands/CreateUserCommand.js";
 
 export class UserController {
   constructor(private readonly userApplicationService: UserApplicationService) {}

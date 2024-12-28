@@ -1,4 +1,4 @@
-import { EmailAddress } from "./EmailAddress";
+import { EmailAddress } from "./EmailAddress.js";
 
 export class User {
   constructor(private readonly id: number | null, private name: string, private email: EmailAddress) {

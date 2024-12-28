@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { ArticleApplicationService } from "../../application/services/ArticleApplicationService";
-import { CreateArticleCommand } from "../../application/commands/CreateArticleCommand";
+import { ArticleApplicationService } from "../../application/services/ArticleApplicationService.js";
+import { CreateArticleCommand } from "../../application/commands/CreateArticleCommand.js";
 
 export class ArticleController {
   constructor(private readonly articleApplicationService: ArticleApplicationService) {}

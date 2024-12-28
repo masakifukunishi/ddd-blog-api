@@ -1,7 +1,7 @@
 import { Router, Request, Response, NextFunction } from "express";
-import { ArticleController } from "../controllers/ArticleController";
-import { articleValidation } from "../middlewares/validations/articleValidation";
-import { validateRequest } from "../middlewares/validateRequest";
+import { ArticleController } from "../controllers/ArticleController.js";
+import { articleValidation } from "../middlewares/validations/articleValidation.js";
+import { validateRequest } from "../middlewares/validateRequest.js";
 
 export const articleRouter = (articleController: ArticleController): Router => {
   const router = Router();
