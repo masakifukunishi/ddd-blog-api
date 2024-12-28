@@ -169,11 +169,6 @@ curl -X POST http://localhost:3000/api/users \
 ```
 
 Expected response (409 Conflict)
-```bash
-{
-  "message": "Email address is already in use"
-}
-```
 
 ### 9. Create article with invalid user
 ```bash
@@ -187,11 +182,6 @@ curl -X POST http://localhost:3000/api/articles \
 ```
 
 Expected response (404 Not Found)
-```json
-{
-  "message": "User not found"
-}
-```
 
 ### 10. Delete article by non-owner
 ```bash
@@ -199,8 +189,3 @@ curl -X DELETE http://localhost:3000/api/articles/1/users/2
 ```
 
 Expected response (403 Forbidden)
-```json
-{
-  "message": "Not authorized to delete this article"
-}
-```
