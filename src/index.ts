@@ -10,7 +10,7 @@ import { ArticleApplicationService } from "./application/services/ArticleApplica
 import { PrismaUserRepository } from "./infrastructure/repositories/PrismaUserRepository.js";
 import { PrismaArticleRepository } from "./infrastructure/repositories/PrismaArticleRepository.js";
 import { UserDomainService } from "./domain/services/UserDomainService.js";
-import { prisma } from "./infrastructure/prisma/client.js";
+import { prisma } from "./infrastructure/prismaClient.js";
 
 async function bootstrap() {
   const app = express();
