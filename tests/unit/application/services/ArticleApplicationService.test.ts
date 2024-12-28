@@ -20,7 +20,6 @@ describe("ArticleApplicationService", () => {
     userRepository = new MockUserRepository();
     articleApplicationService = new ArticleApplicationService(articleRepository, userRepository);
 
-    // テストユーザーを作成
     testUser = new User(1, "John Doe", new EmailAddress("john@example.com"));
     await userRepository.save(testUser);
   });

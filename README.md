@@ -28,7 +28,6 @@
 
 ### tests/
  - unit/: Unit Tests
- - integration/: Integration Tests
  - helpers/: Test Helper Functions
 
 ## Dependency Direction
