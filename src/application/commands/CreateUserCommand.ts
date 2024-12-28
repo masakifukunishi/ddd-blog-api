@@ -1,3 +1,6 @@
 export class CreateUserCommand {
-  constructor(public readonly name: string, public readonly email: string) {}
+  constructor(
+    public readonly name: string,
+    public readonly email: string,
+  ) {}
 }

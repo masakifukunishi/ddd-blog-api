@@ -14,7 +14,7 @@ WORKDIR /workdir
 COPY package*.json ./
 RUN npm install
 
-COPY tsconfig.json package*.json register.js vite.config.ts ./
+COPY tsconfig.json package*.json register.js vite.config.ts eslint.config.js .prettierrc .prettierignore ./
 COPY src ./src
 COPY prisma ./prisma
 COPY tests ./tests

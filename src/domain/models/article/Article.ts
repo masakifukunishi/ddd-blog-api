@@ -4,7 +4,7 @@ export class Article {
     private title: string,
     private content: string,
     private readonly userId: number,
-    private readonly createdAt: Date = new Date()
+    private readonly createdAt: Date = new Date(),
   ) {
     this.validateTitle(title);
     this.validateContent(content);

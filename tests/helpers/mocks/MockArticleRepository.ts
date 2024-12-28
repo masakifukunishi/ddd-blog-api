@@ -10,7 +10,7 @@ export class MockArticleRepository implements IArticleRepository {
       article.getTitle(),
       article.getContent(),
       article.getUserId(),
-      article.getCreatedAt()
+      article.getCreatedAt(),
     );
     this.articles.push(newArticle);
     return newArticle;
