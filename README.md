@@ -6,31 +6,31 @@ This is a sample project demonstrating the implementation of a blog service usin
 ### src/
 - interface/: Interface Layer
 
-    - controllers/: HTTP Request Handling
-    - middlewares/: Middleware Functions
-    - routes/: Route Definitions
+    - controllers: HTTP Request Handling
+    - middlewares: Middleware Functions
+    - routes: Route Definitions
 
 - application/: Application Layer
 
-    - services/: Application Services
-    - commands/: Command Objects
-    - errors/: Custom Error Classes
+    - services: Application Services
+    - commands: Command Objects
+    - errors: Custom Error Classes
   
 - domain/: Domain Layer
 
-    - models/: Entities and Value Objects
-    - services/: Domain Services
-    - repositories/: Repository Interface Definitions
+    - models: Entities and Value Objects
+    - services: Domain Services
+    - repositories: Repository Interface Definitions
 
 
 - infrastructure/: Infrastructure Layer
 
-    - prisma/: Prisma Related Configurations
-    - repositories/: Concrete Repository Implementations
+    - prisma: Prisma Related Configurations
+    - repositories: Concrete Repository Implementations
 
 ### tests/
- - unit/: Unit Tests
- - helpers/: Test Helper Functions
+ - unit: Unit Tests
+ - helpers: Test Helper Functions
 
 ## Dependency Direction
 interface → application → domain ← infrastructure
